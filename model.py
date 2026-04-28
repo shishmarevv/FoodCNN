@@ -5,7 +5,7 @@ from torchvision.models import (
 
     AlexNet_Weights,
     ResNet34_Weights,
-    MobileNetV3_Large_Weights
+    MobileNet_V3_Large_Weights
 )
 
 import torch.nn as nn
@@ -34,7 +34,7 @@ class Model(nn.Module):
             self.net = resnet34(weights=ResNet34_Weights.DEFAULT if pretrained else None)
             self.net.fc = nn.Linear(512, arch.output_dim)
         elif model_type == 'mobilenet_v3_large':
-            self.net = mobilenet_v3_large(weights=MobileNetV3_Large_Weights.DEFAULT if pretrained else None)
+            self.net = mobilenet_v3_large(weights=MobileNet_V3_Large_Weights.DEFAULT if pretrained else None)
             self.net.classifier[3] = nn.Linear(1280, arch.output_dim)
         else:
             raise ValueError(f"Unsupported model type: {model_type}")
