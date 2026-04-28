@@ -111,7 +111,8 @@ def run_experiment(model_type, pretrained, seeds, args, device, base_output_path
 
 
 def compare(args, device):
-    output_path = os.path.join(os.path.dirname(__file__), 'output', args.output_path, args.model_type)
+    aug_suffix = "aug" if args.augment else "noaug"
+    output_path = os.path.join(os.path.dirname(__file__), 'output', args.output_path, args.model_type, aug_suffix)
     os.makedirs(output_path, exist_ok=True)
 
     seeds = [1, 2, 3]
